@@ -9,7 +9,6 @@ import android.util.AttributeSet
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
-import timber.log.Timber
 
 class MentionEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -39,13 +38,6 @@ class MentionEditText @JvmOverloads constructor(
                 if (s == null || isUpdating) return
 
                 if (count > before) {
-                    Timber.tag("MentionEditTextTag").d("""
-                        before: $before
-                        count: $count
-                        start: $start
-                        s: $s
-                    """.trimIndent())
-
                     val newChar = s.getOrNull(start + count - 1)
                     if (newChar == '@') {
                         startIndex = start
@@ -54,8 +46,6 @@ class MentionEditText @JvmOverloads constructor(
 
                     if (startIndex != null) {
                         val keywords = s.toString().substring(startIndex!! + 1, start + count)
-
-                        Timber.tag("MentionEditTextTag").d("keywords: $keywords")
 
                         this@MentionEditText.keywords = keywords
                         onMentionTriggered?.invoke(keywords)

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.maven.publish)
 }
 
 android {
@@ -36,11 +37,18 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.timber)
+}
 
-    testImplementation(libs.junit)
-    testImplementation(libs.junit.jupiter)
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "com.github.idewaputuwiprah"
+            artifactId = "mention-edit-text"
+            version = "0.1"
 
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
 }
