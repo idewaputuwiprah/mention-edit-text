@@ -9,6 +9,9 @@ android {
     compileSdk = 35
 
     defaultConfig {
+        aarMetadata {
+            minCompileSdk = 21
+        }
         minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -17,7 +20,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -34,14 +37,13 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 }
 
 publishing {
     publications {
-        create<MavenPublication>("release") {
+        register<MavenPublication>("release") {
             groupId = "com.github.idewaputuwiprah"
             artifactId = "mention-edit-text"
             version = "0.1"
@@ -50,5 +52,8 @@ publishing {
                 from(components["release"])
             }
         }
+    }
+    repositories {
+        mavenLocal()
     }
 }
