@@ -38,22 +38,25 @@ The selected suggestion is inserted into `MentionEditText` widget, replacing the
 
 ## How To Use
 
-### 1. Insert `MentionEditText` widget into your layout
+### 1. Insert `MentionEditText` widget into your layout  
 ```xml
 <com.adit.library.MentionEditText
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   app:mentionColor="@color/some_color"/>
 ```
-You can customize the mention color using `app:mentionColor` attribute.
+You can customize the mention color using `app:mentionColor` attribute.  
 
-### 2. Define `RecyclerView` widget in your layout
+  
+### 2. Define `RecyclerView` widget in your layout  
 This widget will be used to display the suggestion list. You can see the sample layout [here][2]
 
-### 3. Define `RecyclerViewAdapter` and attach it to your `RecyclerView`
+  
+### 3. Define `RecyclerViewAdapter` and attach it to your `RecyclerView`  
 You need to extend `Mention` interface for your items. You can check the sample [here][3]
 
-### 4. Implement keyword listener to fetch suggestion list
+  
+### 4. Implement keyword listener  
 You need to implement [listener][4] that will fetch the suggestion list either localy or remotely.
 ```kotlin
 edMention.setOnMentionTriggeredListener { keywords->
@@ -61,19 +64,22 @@ edMention.setOnMentionTriggeredListener { keywords->
 }
 ```
 
-### 5. Show the suggestion to `MentionEditText` widget
+  
+### 5. Show the suggestion to `MentionEditText` widget  
 To show the suggestion in the widget, you can use the following method:
 ```kotlin
 edMention.setMention(item) // item is an object that extend Mention interface
 ```
 
-### 6. Get mention objects
+  
+### 6. Get mention objects  
 To get mentions object, you can use `getMentions()` method from `MentionEditText` widget:
 ```kotlin
 edMention.getMentions()
 ```
-This will return list of [MentionSpan][5] objects
+This will return list of [MentionSpan][5] objects  
 
+  
 **You can check the implementation sample [here][6]**
 
 [1]: https://github.com/idewaputuwiprah/mention-edit-text/releases
