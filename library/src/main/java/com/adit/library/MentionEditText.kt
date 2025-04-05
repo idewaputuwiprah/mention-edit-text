@@ -4,7 +4,6 @@ import android.content.Context
 import android.text.Editable
 import android.text.Spannable
 import android.text.TextWatcher
-import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatEditText
@@ -81,11 +80,11 @@ class MentionEditText @JvmOverloads constructor(
         typedArray.recycle()
     }
 
-    private fun highlightMentions(mentionSpan: MentionSpan) {
+    private fun highlightMentions(mentionSpan: MentionSpan, start: Int, end: Int) {
         editableText.setSpan(
-            ForegroundColorSpan(mentionColor),
-            mentionSpan.start,
-            mentionSpan.end,
+            mentionSpan,
+            start,
+            end,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
     }
@@ -107,12 +106,12 @@ class MentionEditText @JvmOverloads constructor(
             keywordSize + 1 + start
         }
 
-        val span = MentionSpan(mentionText, start, end)
+        val span = MentionSpan(mentionText, mentionColor)
         mentions.add(span)
 
         isUpdating = true
         editableText.replace(start, endKeywords, "$mentionText ")
-        highlightMentions(span)
+        highlightMentions(span, start, end)
         startIndex = null
         isUpdating = false
     }
