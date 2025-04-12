@@ -17,7 +17,7 @@ repositories {
 2. Add the dependency
 ```gradle
 dependencies {
-  implementation 'com.github.idewaputuwiprah:mention-edit-text:0.1'
+  implementation 'com.github.idewaputuwiprah:mention-edit-text:0.2'
 }
 ```
 
